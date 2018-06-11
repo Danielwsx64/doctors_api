@@ -9,8 +9,8 @@ defmodule DoctorsApi.RoomChannel do
     {:error, %{reason: "unauthorized"} }
   end
 
-  def handle_in("new_message", %{ "body" => body}, socket) do
-    broadcast! socket, "new_message", %{body: body}
+  def handle_in("new_message", %{ "user_id" => user_id, "body" => body }, socket) do
+    broadcast! socket, "new_message", %{user_id: user_id, body: body}
     {:noreply, socket}
   end
 end
